@@ -18,19 +18,12 @@ class forgetViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        emailTextField.layer.cornerRadius = 15
-        passwordTextField.layer.cornerRadius = 15
-        forgetBtn.layer.cornerRadius = 15
 
+        layout()
     }
     
     @IBAction func forgetClicked(_ sender:UIButton)
     {
-
-//        guard let email = emailTextField.text else{ return }
-//        guard let password = passwordTextField.text else {return}
-        
-
         Auth.auth().sendPasswordReset(withEmail: emailTextField.text!) { (error) in
             if error == nil {
                 print(" SENT....!")
@@ -40,8 +33,13 @@ class forgetViewController: UIViewController {
                 print("Failed - \(String(describing: error?.localizedDescription))")
             }
         }
-        
-        
+    }
+    func layout()
+    {
+        emailTextField.layer.cornerRadius = 25
+        passwordTextField.layer.cornerRadius = 25
+        forgetBtn.layer.cornerRadius = 20
+
     }
 
 

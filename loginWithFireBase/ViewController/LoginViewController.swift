@@ -17,10 +17,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        emailTextField.layer.cornerRadius = 15
-        passwordTextField.layer.cornerRadius = 15
-        letsGoLoginBtn.layer.cornerRadius = 15
-        // Do any additional setup after loading the view.
+        layout()
     }
     
     @IBAction func loginClicked(_ sender: UIButton)
@@ -30,9 +27,8 @@ class LoginViewController: UIViewController {
         guard let password = passwordTextField.text else {return}
         
         Auth.auth().signIn(withEmail: email, password: password) { firebaseResult, error in
-            if let e = error
+            if error != nil
             {
-                //print("hiiiii")
                 let a = UIAlertController(title: "Wrong", message: "Enter a valid password", preferredStyle: .alert)
                 let okbutton = UIAlertAction(title: "Ok", style: .default){ (action) in }
                 a.addAction(okbutton)
@@ -43,10 +39,12 @@ class LoginViewController: UIViewController {
                 self.performSegue(withIdentifier: "goToNext", sender: self)
             }
         }
-        
-        
     }
-    
-    
+    func layout()
+    {
+        emailTextField.layer.cornerRadius = 25
+        passwordTextField.layer.cornerRadius = 25
+        letsGoLoginBtn.layer.cornerRadius = 20
+    }
 
 }

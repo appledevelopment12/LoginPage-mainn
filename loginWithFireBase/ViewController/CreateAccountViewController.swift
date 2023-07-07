@@ -18,12 +18,7 @@ class CreateAccountViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        emailTextField.layer.cornerRadius = 15
-        passwordTextField.layer.cornerRadius = 15
-        createAccountsignupBtn.layer.cornerRadius = 15
-        
-        
+        layout()
     }
     
 
@@ -35,7 +30,7 @@ class CreateAccountViewController: UIViewController {
         guard let password = passwordTextField.text else {return}
         
         Auth.auth().createUser(withEmail: email, password: password) { firebaseResult, error in
-            if let e = error
+            if error != nil
             {
                 print("error")
             }
@@ -44,6 +39,13 @@ class CreateAccountViewController: UIViewController {
                 self.performSegue(withIdentifier:"goToNext", sender: self)
             }
         }
+    }
+    func layout()
+    {
+        
+        emailTextField.layer.cornerRadius = 25
+        passwordTextField.layer.cornerRadius = 25
+        createAccountsignupBtn.layer.cornerRadius = 20
     }
     
 

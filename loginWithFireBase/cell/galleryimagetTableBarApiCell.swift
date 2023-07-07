@@ -1,26 +1,26 @@
 //
-//  ContactTableViewCell.swift
+//  galleryimagetTableBarApiCell.swift
 //  loginWithFireBase
 //
-//  Created by Rajeev on 28/04/23.
+//  Created by Rajeev on 08/05/23.
 //
 
 import UIKit
 
-class ContactTableViewCell: UITableViewCell {
+class galleryimagetTableBarApiCell: UITableViewCell {
 
-   @IBOutlet var namelbl:UILabel!    
-    @IBOutlet var phonelbl:UILabel!
+    @IBOutlet var artworkUrl100: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        artworkUrl100.layer.cornerRadius = 20
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
+        
     }
 
 }

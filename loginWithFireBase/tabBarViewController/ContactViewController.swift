@@ -16,9 +16,8 @@ import ContactsUI
 struct contactNamee
 {
     let name:String
-
-    
 }
+var contacts = [CNContact]()
 
 class ContactViewController: UIViewController,CNContactPickerDelegate, UITableViewDelegate,UITableViewDataSource
 {
@@ -31,6 +30,7 @@ class ContactViewController: UIViewController,CNContactPickerDelegate, UITableVi
     
     override func viewDidLoad()
     {
+        UserDefaults.standard.set(true, forKey: "login")
         super.viewDidLoad()
         let authorize = CNContactStore.authorizationStatus(for: .contacts)
         if authorize == .notDetermined
@@ -44,43 +44,35 @@ class ContactViewController: UIViewController,CNContactPickerDelegate, UITableVi
         }else if authorize == .authorized{
             getContactList()
         }
+
     }
+
+    
     
     func getContactList()
     {
-        
         let  predicate = CNContact.predicateForContactsInContainer(withIdentifier: store.defaultContainerIdentifier())
         let contactt = try! store.unifiedContacts(matching: predicate, keysToFetch: [CNContactBirthdayKey as CNKeyDescriptor,CNContactFamilyNameKey as CNKeyDescriptor,CNContactGivenNameKey as CNKeyDescriptor,CNContactPhoneNumbersKey as CNKeyDescriptor,CNContactDatesKey as CNKeyDescriptor])
+  
         let dat = DateFormatter()
         dat.dateFormat  = "MM/dd/yyyy"
-        
-        
-        
-        for con in contactt {
+    
+        for con in contactt
+        {
             
             //  let contactPersonName = "Full name : \(con.givenName) \(con.familyName)"
-            
-            
             let model = contactNamee(name: con.givenName)
             models.append(model)
+            
             contactTable.reloadData()
-            if(con.birthday != nil)
-            {
-                let dobDt = Calendar.current.date(from: con.birthday!)
-                print("Dob : \(dat.string(from: dobDt!))")
-                
-                //                        phonemodels.append(phonemodel)
-                //                    }
-            }
+//            if(con.birthday != nil)
+//            {
+//                //let dobDt = Calendar.current.date(from: con.birthday!)
+//              //  print("Dob : \(dat.string(from: dobDt!))")
+//            }
+           
         }
-        
-        
-        
-        
-        
-        
     }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         models.count
