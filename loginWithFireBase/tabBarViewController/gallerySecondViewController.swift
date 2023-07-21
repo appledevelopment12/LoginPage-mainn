@@ -6,19 +6,19 @@
 //
 
 import UIKit
+import Kingfisher
 
 class gallerySecondViewController: UIViewController {
 
   @IBOutlet  var galleyImage:UIImageView!
     
     static var h = [ToDo]()
+    static   var j: UIImage? //= nil
     
-    var bh = h
+    var bc = j
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("my    \(gallerySecondViewController.h)")
-       // galleyImage.image = bh
+        galleyImage.image = bc
     }
     
 

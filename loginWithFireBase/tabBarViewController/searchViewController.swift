@@ -110,10 +110,14 @@ extension searchViewController:UICollectionViewDelegate,UICollectionViewDataSour
 
         manager.requestImage(for: asset, targetSize: CGSize(width: 100, height: 100), contentMode: .aspectFit, options: nil) { image, _ in
 
-            var dataImage = image
-            searchSecondPartViewController.imageA1 = image
+            let dataImage = image
+           // searchSecondPartViewController.imageA1 = image
+            //self.performSegue(withIdentifier: "segue", sender: dataImage)
             
-            self.performSegue(withIdentifier: "segue", sender: dataImage)
+            
+            let secondViewController = self.storyboard?.instantiateViewController(withIdentifier: "searchSecondPartViewController") as! searchSecondPartViewController
+            searchSecondPartViewController.imageA1 = image
+            self.navigationController?.pushViewController(secondViewController, animated: true)
         }
     }
     

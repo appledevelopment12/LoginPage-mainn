@@ -126,10 +126,11 @@ extension galleryViewController:UITableViewDataSource,UITableViewDelegate{
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let bca = abc
-        print("diid   \(bca)")
-        print("bca    \(bca.count)")
-        gallerySecondViewController.h = bca
+        let bca = abc[indexPath.row].img
+       // let hj = bca.img
+        gallerySecondViewController.j = bca as? UIImage
+//UIImage(named: bca)
+       
         
         performSegue(withIdentifier:"se", sender: bca)
         
